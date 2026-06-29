@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restaurant Menu</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#f5f5f5;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+header{
+    position:sticky;
+    top:0;
+    background:#ffffff;
+    padding:18px;
+    text-align:center;
+    font-size:28px;
+    font-weight:bold;
+    color:#222;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+    z-index:999;
+}
+
+.container{
+    max-width:900px;
+    margin:25px auto;
+    padding:15px;
+}
+
+.card{
+    background:#fff;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+
+.card img{
+    width:100%;
+    display:block;
+}
+
+.footer{
+    text-align:center;
+    padding:25px;
+    color:#666;
+    font-size:15px;
+}
+
+.zoom{
+    transition:.35s;
+    cursor:pointer;
+}
+
+.zoom:hover{
+    transform:scale(1.02);
+}
+</style>
+
+</head>
+<body>
+
+<header>
+🍽 Restaurant Menu
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<img
+class="zoom"
+src="https://raw.githubusercontent.com/sandeepsingh7543/QrMenu/main/Qr%20menu.png"
+alt="Menu">
+
+
+</div>
+<br>
+<div class="card">
+
+<img
+class="zoom"
+src="https://raw.githubusercontent.com/sandeepsingh7543/QrMenu/main/Qr%20menu.png"
+alt="Menu">
+
+
+</div>
+</div>
+
+<div class="footer">
+Thank You ❤️
+</div>
+
+</body>
+</html>
