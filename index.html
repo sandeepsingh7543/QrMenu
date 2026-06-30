@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Restaurant Menu</title>
+<title>Veg Menu - Frankie Wala</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@400;500;700&display=swap');
+
 *{
     margin:0;
     padding:0;
@@ -13,90 +15,344 @@
 }
 
 body{
-    background:#f5f5f5;
-    font-family:Arial, Helvetica, sans-serif;
+    background:#1a1a1a;
+    font-family:'Roboto', Arial, sans-serif;
+    min-height:100vh;
+    color:white;
+    /* Dark wood texture effect */
+    background-image:
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 2px,
+            rgba(0,0,0,0.1) 2px,
+            rgba(0,0,0,0.1) 4px
+        ),
+        linear-gradient(180deg, #1c1c1c 0%, #111 50%, #1a1a1a 100%);
 }
 
-header{
-    position:sticky;
-    top:0;
-    background:#ffffff;
-    padding:18px;
+.menu-container{
+    max-width:700px;
+    margin:0 auto;
+    padding:0 15px 40px;
+    position:relative;
+}
+
+/* === VEG MENU TITLE === */
+.menu-title{
     text-align:center;
-    font-size:28px;
-    font-weight:bold;
-    color:#222;
-    box-shadow:0 2px 10px rgba(0,0,0,.1);
-    z-index:999;
+    padding:30px 0 25px;
 }
 
-.container{
-    max-width:900px;
-    margin:25px auto;
-    padding:15px;
+.menu-title h1{
+    font-family:'Lobster', cursive;
+    font-size:clamp(42px, 10vw, 65px);
+    color:white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    font-weight:400;
 }
 
-.card{
-    background:#fff;
-    border-radius:20px;
-    overflow:hidden;
-    box-shadow:0 10px 30px rgba(0,0,0,.15);
+/* Red decorative bar under title */
+.red-bar{
+    width:80%;
+    max-width:500px;
+    height:4px;
+    background:linear-gradient(90deg, transparent, #cc0000, #cc0000, transparent);
+    margin:0 auto 20px;
 }
 
-.card img{
-    width:100%;
+/* === MENU SECTION === */
+.menu-section{
+    border:3px solid #cc0000;
+    border-radius:4px;
+    padding:20px 15px;
+    position:relative;
+    margin-top:20px;
+}
+
+/* Category Tab */
+.category-tab{
+    position:absolute;
+    top:-1px;
+    left:-1px;
+    background:#cc0000;
+    color:white;
+    font-size:clamp(16px, 4vw, 20px);
+    font-weight:700;
+    padding:8px 25px 8px 15px;
+    border-radius:4px 0 20px 0;
+    clip-path: polygon(0 0, 85% 0, 100% 100%, 0% 100%);
+    padding-right:35px;
+}
+
+/* Column Headers */
+.menu-header{
+    display:flex;
+    justify-content:flex-end;
+    padding:10px 0 8px;
+    margin-bottom:5px;
+    gap:10px;
+}
+
+.menu-header span{
+    font-size:clamp(13px, 3.2vw, 16px);
+    font-weight:700;
+    text-align:center;
+}
+
+.header-base{
+    width:70px;
+    text-align:center;
+}
+
+.header-cheese{
+    width:100px;
+    text-align:center;
+    color:white;
+}
+
+.header-cheese-title{
+    font-size:clamp(15px, 3.5vw, 18px) !important;
     display:block;
 }
 
-.footer{
+.header-cheese-sub{
+    font-size:clamp(11px, 2.8vw, 13px) !important;
+    font-weight:500 !important;
+    opacity:0.9;
+}
+
+/* Menu Items */
+.menu-item{
+    display:flex;
+    align-items:center;
+    padding:6px 0;
+    border-bottom:1px solid rgba(255,255,255,0.03);
+}
+
+.menu-item:last-child{
+    border-bottom:none;
+}
+
+.item-name{
+    flex:1;
+    font-size:clamp(13px, 3.2vw, 16px);
+    font-weight:500;
+    color:white;
+}
+
+.item-base{
+    width:70px;
     text-align:center;
-    padding:25px;
-    color:#666;
-    font-size:15px;
+    font-size:clamp(13px, 3.2vw, 16px);
+    font-weight:500;
+    color:#cc0000;
 }
 
-.zoom{
-    transition:.35s;
-    cursor:pointer;
+.item-cheese{
+    width:100px;
+    text-align:center;
+    font-size:clamp(13px, 3.2vw, 16px);
+    font-weight:500;
+    color:#cc0000;
 }
 
-.zoom:hover{
-    transform:scale(1.02);
+/* Frankie Image */
+.frankie-img{
+    position:absolute;
+    right:-130px;
+    top:320px;
+    width:clamp(100px, 25vw, 150px);
+    height:clamp(110px, 30vw, 170px);
+    border-radius:30px 8px 8px 30px;
+    overflow:visible;
+    border-top:3px solid #cc0000;
+    border-right:3px solid #cc0000;
+    border-bottom:3px solid #cc0000;
+    border-left:none;
+    z-index:5;
+}
+
+.frankie-img img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:5px 5px 5px 5px;
+}
+
+/* Watermark text */
+.watermark{
+    position:absolute;
+    right:15px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:clamp(40px, 12vw, 80px);
+    font-weight:900;
+    color:rgba(255,255,255,0.04);
+    letter-spacing:3px;
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    pointer-events:none;
+    z-index:0;
+}
+
+/* Star decoration */
+.star-decoration{
+    text-align:right;
+    padding:20px 15px 0;
+    font-size:24px;
+    color:rgba(255,255,255,0.7);
+}
+
+.star-decoration::after{
+    content:'✦';
+    font-size:28px;
+    background:linear-gradient(135deg, #fff, #aaa);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+/* Responsive */
+@media(max-width:400px){
+    .menu-section{padding:15px 10px;}
+    .item-base{width:55px;}
+    .item-cheese{width:75px;}
+    .header-base{width:55px;}
+    .header-cheese{width:75px;}
 }
 </style>
 
 </head>
 <body>
 
-<header>
-🍽 Restaurant Menu
-</header>
+<div class="menu-container">
 
-<div class="container">
+    <!-- Veg Menu Title -->
+    <div class="menu-title">
+        <h1>Veg Menu</h1>
+    </div>
+    <div class="red-bar"></div>
 
-<div class="card">
+    <!-- Veg Frankie Section -->
+    <div class="menu-section">
 
-<img
-class="zoom"
-src="https://raw.githubusercontent.com/sandeepsingh7543/QrMenu/main/Qr%20menu.png"
-alt="Menu">
+        <!-- Category Tab -->
+        <div class="category-tab">Veg Frankie</div>
 
+        <!-- Watermark Background Text -->
+        <div class="watermark">FRANKIE Wala</div>
 
+        <!-- Column Headers -->
+        <div class="menu-header">
+            <span class="header-base">Base</span>
+            <span class="header-cheese">
+                <span class="header-cheese-title">Cheese</span>
+            </span>
+        </div>
+
+        <!-- Menu Items -->
+        <div class="menu-item"><span class="item-name">Veg Frankie</span><span class="item-base">50</span><span class="item-cheese">90</span></div>
+        <div class="menu-item"><span class="item-name">Tandoori Frankie</span><span class="item-base">60</span><span class="item-cheese">100</span></div>
+        <div class="menu-item"><span class="item-name">Manchurian Frankie</span><span class="item-base">70</span><span class="item-cheese">110</span></div>
+        <div class="menu-item"><span class="item-name">Schezwan Frankie</span><span class="item-base">60</span><span class="item-cheese">100</span></div>
+        <div class="menu-item"><span class="item-name">Noodle Frankie</span><span class="item-base">70</span><span class="item-cheese">110</span></div>
+        <div class="menu-item"><span class="item-name">Mayo Frankie</span><span class="item-base">60</span><span class="item-cheese">100</span></div>
+        <div class="menu-item"><span class="item-name">Peri peri Frankie</span><span class="item-base">60</span><span class="item-cheese">100</span></div>
+        <div class="menu-item"><span class="item-name">Lays Frankie</span><span class="item-base">60</span><span class="item-cheese">100</span></div>
+        <div class="menu-item"><span class="item-name">Nachos Frankie</span><span class="item-base">60</span><span class="item-cheese">100</span></div>
+        <div class="menu-item"><span class="item-name">Paneer Frankie</span><span class="item-base">80</span><span class="item-cheese">120</span></div>
+        <div class="menu-item"><span class="item-name">Schezwan Noddles Frankie</span><span class="item-base">90</span><span class="item-cheese">130</span></div>
+        <div class="menu-item"><span class="item-name">Peri Peri Paneer Frankie</span><span class="item-base">100</span><span class="item-cheese">140</span></div>
+        <div class="menu-item"><span class="item-name">Noodle Manchurian Frankie</span><span class="item-base">90</span><span class="item-cheese">130</span></div>
+        <div class="menu-item"><span class="item-name">Paneer Tandoori Frankie</span><span class="item-base">100</span><span class="item-cheese">140</span></div>
+        <div class="menu-item"><span class="item-name">Schezwan Nachos Frankie</span><span class="item-base">70</span><span class="item-cheese">110</span></div>
+        <div class="menu-item"><span class="item-name">Mayo Noddles Frankie</span><span class="item-base">90</span><span class="item-cheese">130</span></div>
+        <div class="menu-item"><span class="item-name">Paneer Peri Peri Garlic Frankie</span><span class="item-base">100</span><span class="item-cheese">140</span></div>
+        <div class="menu-item"><span class="item-name">Noodles Peri Peri Frankie</span><span class="item-base">90</span><span class="item-cheese">130</span></div>
+        <div class="menu-item"><span class="item-name">Noodle tandoori Frankie</span><span class="item-base">90</span><span class="item-cheese">130</span></div>
+        <div class="menu-item"><span class="item-name">Schezwan Lays Frankie</span><span class="item-base">70</span><span class="item-cheese">110</span></div>
+        <div class="menu-item"><span class="item-name">Pizza Frankie</span><span class="item-base">90</span><span class="item-cheese">130</span></div>
+        <div class="menu-item"><span class="item-name">Hot n Spicy Frankie</span><span class="item-base">80</span><span class="item-cheese">120</span></div>
+        <div class="menu-item"><span class="item-name">Lays Peri Peri Frankie</span><span class="item-base">80</span><span class="item-cheese">120</span></div>
+        <div class="menu-item"><span class="item-name">Nachos Tandoori Frankie</span><span class="item-base">80</span><span class="item-cheese">120</span></div>
+        <div class="menu-item"><span class="item-name">Garlic Frankie</span><span class="item-base">70</span><span class="item-cheese">110</span></div>
+        <div class="menu-item"><span class="item-name">Frankie Wala Special</span><span class="item-base">100</span><span class="item-cheese">140</span></div>
+        <div class="menu-item"><span class="item-name">Chipotle Frankie</span><span class="item-base">70</span><span class="item-cheese">110</span></div>
+        <div class="menu-item"><span class="item-name">Mint Frankie</span><span class="item-base">70</span><span class="item-cheese">110</span></div>
+        <div class="menu-item"><span class="item-name">Paneer Noodle Frankie</span><span class="item-base">100</span><span class="item-cheese">140</span></div>
+        <div class="menu-item"><span class="item-name">Veg Thousand Island Frankie</span><span class="item-base">100</span><span class="item-cheese">140</span></div>
+
+        <!-- Frankie Image -->
+        <div class="frankie-img">
+            <img src="https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=300&q=70" alt="Frankie" loading="lazy">
+        </div>
+
+    </div>
 </div>
-<br>
-<div class="card">
 
-<img
-class="zoom"
-src="https://raw.githubusercontent.com/sandeepsingh7543/QrMenu/main/Qr%20menu.png"
-alt="Menu">
+<div class="menu-container">
 
+    <!-- Veg Menu Title -->
+    <div class="menu-title">
+        <h1>Veg Menu</h1>
+    </div>
+    <div class="red-bar"></div>
 
-</div>
-</div>
+    <!-- Veg Frankie Section -->
+    <div class="menu-section">
 
-<div class="footer">
-Thank You ❤️
+        <!-- Category Tab -->
+        <div class="category-tab">Veg Frankie</div>
+
+        <!-- Watermark Background Text -->
+        <div class="watermark">FRANKIE Wala</div>
+
+        <!-- Column Headers -->
+        <div class="menu-header">
+            <span class="header-base">Base</span>
+            <span class="header-cheese">
+                <span class="header-cheese-title">Cheese</span>
+            </span>
+        </div>
+
+        <!-- Menu Items -->
+        <div class="menu-item"><span class="item-name">Veg Frankie</span><span class="item-base">50</span><span class="item-cheese">90</span></div>
+        <div class="menu-item"><span class="item-name">Tandoori Frankie</span><span class="item-base">60</span><span class="item-cheese">100</span></div>
+        <div class="menu-item"><span class="item-name">Manchurian Frankie</span><span class="item-base">70</span><span class="item-cheese">110</span></div>
+        <div class="menu-item"><span class="item-name">Schezwan Frankie</span><span class="item-base">60</span><span class="item-cheese">100</span></div>
+        <div class="menu-item"><span class="item-name">Noodle Frankie</span><span class="item-base">70</span><span class="item-cheese">110</span></div>
+        <div class="menu-item"><span class="item-name">Mayo Frankie</span><span class="item-base">60</span><span class="item-cheese">100</span></div>
+        <div class="menu-item"><span class="item-name">Peri peri Frankie</span><span class="item-base">60</span><span class="item-cheese">100</span></div>
+        <div class="menu-item"><span class="item-name">Lays Frankie</span><span class="item-base">60</span><span class="item-cheese">100</span></div>
+        <div class="menu-item"><span class="item-name">Nachos Frankie</span><span class="item-base">60</span><span class="item-cheese">100</span></div>
+        <div class="menu-item"><span class="item-name">Paneer Frankie</span><span class="item-base">80</span><span class="item-cheese">120</span></div>
+        <div class="menu-item"><span class="item-name">Schezwan Noddles Frankie</span><span class="item-base">90</span><span class="item-cheese">130</span></div>
+        <div class="menu-item"><span class="item-name">Peri Peri Paneer Frankie</span><span class="item-base">100</span><span class="item-cheese">140</span></div>
+        <div class="menu-item"><span class="item-name">Noodle Manchurian Frankie</span><span class="item-base">90</span><span class="item-cheese">130</span></div>
+        <div class="menu-item"><span class="item-name">Paneer Tandoori Frankie</span><span class="item-base">100</span><span class="item-cheese">140</span></div>
+        <div class="menu-item"><span class="item-name">Schezwan Nachos Frankie</span><span class="item-base">70</span><span class="item-cheese">110</span></div>
+        <div class="menu-item"><span class="item-name">Mayo Noddles Frankie</span><span class="item-base">90</span><span class="item-cheese">130</span></div>
+        <div class="menu-item"><span class="item-name">Paneer Peri Peri Garlic Frankie</span><span class="item-base">100</span><span class="item-cheese">140</span></div>
+        <div class="menu-item"><span class="item-name">Noodles Peri Peri Frankie</span><span class="item-base">90</span><span class="item-cheese">130</span></div>
+        <div class="menu-item"><span class="item-name">Noodle tandoori Frankie</span><span class="item-base">90</span><span class="item-cheese">130</span></div>
+        <div class="menu-item"><span class="item-name">Schezwan Lays Frankie</span><span class="item-base">70</span><span class="item-cheese">110</span></div>
+        <div class="menu-item"><span class="item-name">Pizza Frankie</span><span class="item-base">90</span><span class="item-cheese">130</span></div>
+        <div class="menu-item"><span class="item-name">Hot n Spicy Frankie</span><span class="item-base">80</span><span class="item-cheese">120</span></div>
+        <div class="menu-item"><span class="item-name">Lays Peri Peri Frankie</span><span class="item-base">80</span><span class="item-cheese">120</span></div>
+        <div class="menu-item"><span class="item-name">Nachos Tandoori Frankie</span><span class="item-base">80</span><span class="item-cheese">120</span></div>
+        <div class="menu-item"><span class="item-name">Garlic Frankie</span><span class="item-base">70</span><span class="item-cheese">110</span></div>
+        <div class="menu-item"><span class="item-name">Frankie Wala Special</span><span class="item-base">100</span><span class="item-cheese">140</span></div>
+        <div class="menu-item"><span class="item-name">Chipotle Frankie</span><span class="item-base">70</span><span class="item-cheese">110</span></div>
+        <div class="menu-item"><span class="item-name">Mint Frankie</span><span class="item-base">70</span><span class="item-cheese">110</span></div>
+        <div class="menu-item"><span class="item-name">Paneer Noodle Frankie</span><span class="item-base">100</span><span class="item-cheese">140</span></div>
+        <div class="menu-item"><span class="item-name">Veg Thousand Island Frankie</span><span class="item-base">100</span><span class="item-cheese">140</span></div>
+
+        <!-- Frankie Image -->
+        <div class="frankie-img">
+            <img src="https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=300&q=70" alt="Frankie" loading="lazy">
+        </div>
+
+    </div>
 </div>
 
 </body>
